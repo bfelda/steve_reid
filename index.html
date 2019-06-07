@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Beer Co</title>
+</head>
+<style>
+    html, body{
+        margin:0;
+        padding:0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        scroll-behavior: smooth;
+    }
+    .menu{
+        height:100px;
+        z-index: 1;
+        background: rgba(255,255,255,0.75);
+        display: flex;
+        justify-content:space-around;
+        align-items: center;
+        border-bottom: solid lightgray 1px;
+        position:fixed;
+        width:100%;
+    }
+    .menu > ul {
+        list-style-type: none;
+    }
+    .menu > ul > li {
+        display: inline;
+    }
+    .menu > ul > li:not(:last-child):after {
+        content: '|';
+        margin: 0 10px;
+    }
+    .menu a {
+        text-decoration: none;
+        color: black;
+    }
+    .hero {
+        height:700px;
+        border-left:1px solid black;
+        background-image: url("images/steve.jpg");
+        background-size: cover;
+        background-attachment: fixed;
+        position:relative;
+        clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+    }
+    .hero .cta {
+        position:absolute;
+        display:flex;
+        flex-direction:column;
+        align-items: center;
+        justify-content: flex-end;
+        right:0;
+        padding: 2em;
+        width: 50%;
+        box-sizing: border-box;
+        background:rgba(0,0,0,0.5);
+        color:white;
+        height:100%;
+    }
+    .cta > h1 {
+        height: 1em;
+        padding-bottom:2em;
+    }
+    .sub-hero{
+        position: relative;
+        width:50%;
+        margin:0 auto;
+        margin-top:60px;
+        border-left: 1px silver solid;
+        border-right: 1px silver solid;
+        padding: 0 30px;
+        min-height: 180px;
+    }
+
+    .sub-hero img {
+        width: 160px;
+        float: left;
+        shape-outside: circle();
+        margin: 10px;
+    }
+
+    .divider {
+        background:wheat;
+        height: 70px;
+        margin-top: 50px;
+        clip-path: polygon(100% 0, 100% 100%, 0 100%);
+    }
+
+    .gallery{
+        padding: 20px;
+        display: grid;
+        grid-gap:10px;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        grid-auto-rows: 250px 150px;
+        grid-auto-flow: dense;
+        background: wheat;
+    }
+
+    .item {
+        overflow: hidden;
+        margin:0;
+        position: relative;
+        border: solid black 2px;
+    }
+
+    .item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform ease-out .2s;
+        transform:scale(1);
+    }
+
+    .item figcaption {
+        position:absolute;
+        bottom:0;
+        background: rgba(0,0,0,0.3);
+        color: white;
+        width:100%;
+        height:100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity:0;
+        transition: all ease-out .3s;
+    }
+
+    .item:hover img {
+        transform:scale(1.2);
+    }
+
+    .item:hover figcaption {
+        opacity:1;
+    }
+
+    footer{
+        display: grid;
+        grid-template-areas: 
+        "logo email phone"
+        "logo contact contact"
+        "logo address address";
+        padding: 30px;
+        color:#fbfade;
+        background: #2b2c31;
+    }
+
+    footer .logo {
+        grid-area: logo;
+        display: flex;
+        align-items:center;
+        justify-content: center;
+        clip-path: circle();
+    }
+
+    footer .logo img {
+        width: 150px;
+    }
+
+    footer .contact {
+        grid-area: contact;
+    }
+
+    footer .address {
+        grid-area: address;
+    }
+
+    footer .email {
+        grid-area: email;
+    }
+
+    footer .phone {
+        grid-area: phone;
+    }
+
+    @media(min-width:480px){
+        .item:first-child {
+            grid-area: 1 / 1 / span 2 / span 2;
+        }
+        .item:nth-child(3n) {
+            grid-column: span 2;
+        }
+    }
+
+    @keyframes fadeIn { 
+        from { opacity:0; } 
+        to { opacity:1; } 
+    }
+
+    .fade-in {
+        opacity:0;
+        animation:fadeIn ease-in 1;
+        animation-fill-mode:forwards;
+        animation-duration:.5s;
+    }
+
+    .half-sec{
+        animation-delay: .5s;
+    }
+
+    .full-sec{
+        animation-duration:1s;
+    }
+</style>
+<body>
+    <nav class="menu">
+        <ul>
+            <li><a href="#home">HOME</a></li>
+            <li><a href="#gallery">GALLERY</a></li>
+            <li><a href="#contact">CONTACT</a></li>
+        </ul>
+    </nav>
+    <section id="home" class="hero">
+        <div class="cta">
+            <h1 class="fade-in half-sec">This is the Call To Action!</h1>
+        </div>
+    </section>
+    <section class="sub-hero">
+        <div>
+            <img src="/images/beer-taster.jpg" alt="">
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium fugit ratione expedita modi voluptas aperiam eum nulla, sed dicta officiis!
+            </p>
+            <p>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minus laudantium odit rerum dolorum nostrum et?
+            </p>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!--Region Gallery-->
+
+    <section id="gallery" class="gallery">
+        <figure class="item">
+            <img src="/images/sewing3.jpg" alt="Voodoo Ranger IPA">
+            <figcaption>Voodoo Ranger IPA</figcaption>
+        </figure>
+        <figure class="item">
+            <img src="/images/belt1.jpg" alt="10 Barrel">
+            <figcaption>10 Barrel</figcaption>
+        </figure>
+        <figure class="item">
+            <img src="/images/belt2.jpg" alt="10 Barrel">
+            <figcaption>10 Barrel</figcaption>
+        </figure>
+        <figure class="item">
+            <img src="/images/belt3.jpg" alt="Bartender Cheers">
+            <figcaption>Bartender Cheers</figcaption>
+        </figure>
+        <figure class="item">
+            <img src="/images/belt4.jpg" alt="Tappers">
+            <figcaption>Tappers</figcaption>
+        </figure>
+        <figure class="item">
+            <img src="/images/belt5.jpg" alt="Friends Drink & Laugh">
+            <figcaption>Friends Drink & Laugh</figcaption>
+        </figure>
+        <figure class="item">
+            <img src="/images/buckle1.jpg" alt="Beer and Sunsets">
+            <figcaption>Beer and Sunsets</figcaption>
+        </figure>
+        <figure class="item">
+            <img src="/images/buckle2.jpg" alt="Dark Grain Bourbon">
+            <figcaption>Dark Grain Bourbon</figcaption>
+        </figure>
+        <figure class="item">
+            <img src="/images/holder1.jpg" alt="Golden">
+            <figcaption>Golden</figcaption>
+        </figure>
+        <figure class="item">
+            <img src="/images/machine1.jpg" alt="Head Closeup">
+            <figcaption>Head Closeup</figcaption>
+        </figure>
+        <figure class="item">
+            <img src="/images/sewing1.jpg" alt="Lonely Beer">
+            <figcaption>Lonely Beer</figcaption>
+        </figure>
+        <figure class="item">
+            <img src="/images/sewing2.jpg" alt="Cheers">
+            <figcaption>Cheers</figcaption>
+        </figure>
+        <figure class="item">
+            <img src="/images/winterSmoking.jpg" alt="Winter Smoke House">
+            <figcaption>Winter Smoke House</figcaption>
+        </figure>
+
+    </section>
+
+    <!--endregion-->
+
+    <footer id="contact">
+        <div class="logo">
+            <img src="/images/beer-taster.jpg" alt="">
+        </div>
+        <div class="email">johnd@gmail.com</div>
+        <div class="phone">(555)555-5555</div>
+        <div class="address">300 Corporate Dr.</div>
+        <div class="contact">John Doe</div>
+    </footer>
+</body>
+</html>
